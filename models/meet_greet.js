@@ -5,6 +5,7 @@ const {
 module.exports = (sequelize, DataTypes) => {
   class MeetGreet extends Model {
     static associate({ Band, Event }) {
+      
       // define association here
       MeetGreet.belongsTo(Band, {
         foreignKey: "band_id",

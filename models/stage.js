@@ -5,6 +5,7 @@ const {
 module.exports = (sequelize, DataTypes) => {
   class Stage extends Model {
     static associate({ Event, StageEvent }) {
+     
       // define association here
       Stage.belongsToMany(Event, {
         through: StageEvent,
