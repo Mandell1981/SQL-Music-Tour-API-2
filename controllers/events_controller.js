@@ -1,7 +1,7 @@
 // dependencies
 const events = require('express').Router()
 const db = require('../models')
-const { Event } = db
+const { Event, Stage, MeetGreets } = db
 const { Op } = require('sequelize')
 
 // Find All Events, index route
@@ -24,7 +24,11 @@ events.get('/', async (req,res) => {
 events.get('/:id', async (req, res) => {
     try {
         const foundEvent = await Event.findOne({
-            where: { event_id: req.params.id }
+            where: { event_id: req.params.id },
+            include: [
+                {model: Stage },
+                { model: MeetGreets }
+            ]
         })
         res.status(200).json(foundEvent)
     } catch (error) {
@@ -78,4 +82,4 @@ events.delete('/:id', async (req, res) => {
 })
 
 // export
-module.exports = events 
+module.exports = events; 
