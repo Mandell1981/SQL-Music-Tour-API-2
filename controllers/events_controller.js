@@ -1,7 +1,7 @@
 // dependencies
 const events = require('express').Router()
 const db = require('../models')
-const { Event, Stage, MeetGreets } = db
+const { Event, Stage, MeetGreet } = db
 const { Op } = require('sequelize')
 
 // Find All Events, index route
@@ -27,7 +27,7 @@ events.get('/:id', async (req, res) => {
             where: { event_id: req.params.id },
             include: [
                 {model: Stage },
-                { model: MeetGreets }
+                { model: MeetGreet }
             ]
         })
         res.status(200).json(foundEvent)
